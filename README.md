@@ -9,7 +9,7 @@ python -m farey
 For example,
 
 ```
-89.32841 -> 78609 / 880
+3.14159265358979 -> 355 / 113
 ```
 
 You can mess around with the two parameters MAX_DENOM and EPSILON.
