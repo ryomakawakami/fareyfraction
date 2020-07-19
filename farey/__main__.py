@@ -9,14 +9,24 @@ def getFraction(d):
     denom = 0
 
     low = [0, 1]
-    mid = [1, 2]
+    mid = [1, 1]
     high = [1, 1]
 
     while mid[1] < MAX_DENOM:
         if math.fabs(mid[0] / mid[1] - d) < EPSILON:
             return mid
+        elif math.fabs(low[0] / low[1] - d) < EPSILON:
+            return low
+        elif math.fabs(high[0] / high[1] - d) < EPSILON:
+            return high
 
-        if d < mid[0] / mid[1]:
+        # Skip this for first iteration
+        if mid[0] == high[0] and mid[1] == high[1]:
+            mid[0] = low[0] + high[0]
+            mid[1] = low[1] + high[1]
+            continue
+
+        if d * mid[1] < mid[0]:
             high[0] = low[0] + mid[0]
             high[1] = low[1] + mid[1]
         else:
